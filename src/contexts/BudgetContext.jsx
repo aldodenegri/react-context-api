@@ -7,7 +7,7 @@ function BudgetProvider({children}){
     const [budgetMode, setBudgetMode] = useState(false);
 
     function toggleBudgetMode(){
-            return setBudgetMode(!budgetMode);
+            return setBudgetMode(prev => !prev);
     }
     const value = {budgetMode, toggleBudgetMode};
     return <BudgetContext.Provider value={value}>
