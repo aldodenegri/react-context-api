@@ -6,8 +6,7 @@ function HomePage(){
     return (
         <>
             <h1>Benvenuto nella HomePage</h1>
-            <button onClick={toggleBudgetMode}>{budgetMode ? "Disattiva Budget Mode" : "Attiva Budget Mode"}</button>
-            {console.log(budgetMode)}
+            
         </>
     );
 }export default HomePage

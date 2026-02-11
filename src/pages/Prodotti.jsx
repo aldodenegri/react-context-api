@@ -4,36 +4,45 @@ import axios from 'axios'
 import {Link } from 'react-router-dom'
 import { useBudget } from '../contexts/BudgetContext'
 function Prodotti(){
-    const {budgetMode , toggleBudgetMode} = useBudget();
+    const {budgetMode} = useBudget();
     const [prods,setProds] = useState([]);
-
+    const [displayedProds, setDisplayedProds] = useState([]);
     const apiUrl ="https://fakestoreapi.com/products";
     function getData()
     {
-        setProds([]);
         axios.get(apiUrl).then((resultProdotti) => {
             console.log(resultProdotti.data);
             setProds([...resultProdotti.data]);
+            setDisplayedProds([...resultProdotti.data]);
         }).catch(err => console.error(err));
     }
     useEffect(() => {
         getData();
     },[]);
 
-    useEffect(() => console.log(budgetMode),[budgetMode])
-    function filtro(tBM)
-    {
-
-        if(budgetMode) setProds(prods.filter((p) => p.price <= 30));
-        else if(budgetMode == false) getData(); 
-        return tBM;
+    //questa è stata la soluzione per gestire lo stale closure, ovvero la funzione filtro prendeva un valore obsoleto di budgetMode
+    useEffect(() => {
+        console.log(budgetMode)
+    if (budgetMode) {
+        setDisplayedProds(prods.filter(p => p.price <= 30));
+    } else {
+        setDisplayedProds(prods);
     }
+}, [budgetMode, prods]);
+    //la funzione oltre filtra con uno stato passato, invertire il booleano permtterà di gestire lo stato al futuro(non inserito)
+    // function filtro()
+    // {
+    //     //soluzione non ottimale perché una volta che si disattiva la budgetMode ricarica tutto e non è il massimo.
+    //     if(budgetMode) setDisplayedProds(prods.filter((p) => p.price <= 30));
+    //     else if(budgetMode == false) setDisplayedProds(prods);
+    //     toggleBudgetMode;
+    // }
     return(
         <>
             <h1>I nostri prodotti</h1>
-            <button onClick={() => filtro(toggleBudgetMode())}>{budgetMode ? "Disattiva Budget Mode" : "Attiva Budget Mode"}</button>
+            
             <ul className={styles.prodsContainer}>
-                {prods.map(p => (
+                {displayedProds.map(p => (
                     <li key={p.id} className={styles.singleProd}>
                         <h1>{p.title}</h1>
                         <div>
