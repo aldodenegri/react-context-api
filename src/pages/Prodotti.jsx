@@ -4,6 +4,7 @@ import axios from 'axios'
 import {Link } from 'react-router-dom'
 import { useBudget } from '../contexts/BudgetContext'
 import StarDrawer from '../components/StarDrawer'
+import CardProdotto from '../components/CardProdotto'
 function Prodotti(){
     const {budgetMode} = useBudget();
     const [prods,setProds] = useState([]);
@@ -45,7 +46,10 @@ function Prodotti(){
             <ul className={styles.prodsContainer}>
                 {displayedProds.map(p => (
                     <li key={p.id} className={styles.singleProd}>
-                        <h1>{p.title}</h1>
+
+                    <CardProdotto id={p.id} title={p.title} image={p.image}  description={p.description} price={p.price} category={p.category} rate={p.rating.rate} count={p.rating.count} />
+                    
+                        {/* <h1>{p.title}</h1>
                         <div>
                             <img src={p.image}/>
                             <p className={styles.description}>{p.description}</p>
@@ -53,7 +57,7 @@ function Prodotti(){
                             <p>{p.category}</p>
                             <div className={styles["star-rate"]}><StarDrawer  rate={p.rating.rate}/></div><p> ({p.rating.count})</p>
                             <Link to={`/Products/${p.id}`}> Vedi in dettaglio </Link>
-                        </div>
+                        </div> */}
                     </li>
                 ))}
             </ul>
