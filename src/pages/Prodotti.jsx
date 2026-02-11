@@ -3,6 +3,7 @@ import styles from './Prodotti.module.css'
 import axios from 'axios'
 import {Link } from 'react-router-dom'
 import { useBudget } from '../contexts/BudgetContext'
+import StarDrawer from '../components/StarDrawer'
 function Prodotti(){
     const {budgetMode} = useBudget();
     const [prods,setProds] = useState([]);
@@ -50,7 +51,7 @@ function Prodotti(){
                             <p className={styles.description}>{p.description}</p>
                             <p className={styles.price}>{p.price}€</p>
                             <p>{p.category}</p>
-                            <p>{p.rating.rate} ({p.rating.count})</p>
+                            <div className={styles["star-rate"]}><StarDrawer  rate={p.rating.rate}/></div><p> ({p.rating.count})</p>
                             <Link to={`/Products/${p.id}`}> Vedi in dettaglio </Link>
                         </div>
                     </li>

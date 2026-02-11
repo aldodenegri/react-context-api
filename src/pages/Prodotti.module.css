@@ -67,3 +67,7 @@ main > h1{
 .price{
     color:rgb(0, 255, 149);
 }
+.star-rate{
+    display: flex;
+    justify-content: center;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import axios from 'axios';
-
+import StarDrawer from "../components/StarDrawer";
 function ProdottiDettagli() {
     const { id } = useParams();
     const [prod, setProd] = useState(null);
@@ -28,7 +28,7 @@ function ProdottiDettagli() {
                 <p >{prod?.description}</p>
                 <p >{prod?.price}€</p>
                 <p>{prod?.category}</p>
-                <p>{prod?.rating?.rate} ({prod?.rating?.count})</p>
+                <StarDrawer rate={prod?.rating?.rate} /><p> ({prod?.rating?.count})</p>
                 <Link to={`/Products`}> Ritorna nei prodotti </Link>
             </div>
         </>
