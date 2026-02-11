@@ -28,7 +28,9 @@
     scrollbar-width: thin;
     scrollbar-color: #00ff95 #f1f1f1;*/
 }
-
+.description .det{
+    border: none;
+}
 /* WebKit browsers */
 .description::-webkit-scrollbar {
     width: 8px;
@@ -55,4 +57,8 @@
 .star-rate{
     display: flex;
     justify-content: center;
+}
+
+.cardContainer{
+    text-align: center;
 }

@@ -47,8 +47,8 @@ function Prodotti(){
                 {displayedProds.map(p => (
                     <li key={p.id} className={styles.singleProd}>
 
-                    <CardProdotto id={p.id} title={p.title} image={p.image}  description={p.description} price={p.price} category={p.category} rate={p.rating.rate} count={p.rating.count} />
-                    
+                    <CardProdotto mod={1} id={p.id} title={p.title} image={p.image}  description={p.description} price={p.price} category={p.category} rate={p.rating.rate} count={p.rating.count} />
+
                         {/* <h1>{p.title}</h1>
                         <div>
                             <img src={p.image}/>

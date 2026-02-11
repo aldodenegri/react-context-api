@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import axios from 'axios';
 import StarDrawer from "../components/StarDrawer";
+import CardProdotto from "../components/CardProdotto";
 function ProdottiDettagli() {
     const { id } = useParams();
     const [prod, setProd] = useState(null);
@@ -24,12 +25,13 @@ function ProdottiDettagli() {
         <>
             <h1>Benvenuto nel dettaglio di <span>{prod?.title}</span></h1>
             <div>
-                <img src={prod?.image} />
+                <CardProdotto mod={null} id={id} title={prod?.title} image={prod?.image}  description={prod?.description} price={prod?.price} category={prod?.category} rate={prod?.rating?.rate} count={prod?.rating?.count} />
+                {/* <img src={prod?.image} />
                 <p >{prod?.description}</p>
                 <p >{prod?.price}€</p>
                 <p>{prod?.category}</p>
                 <StarDrawer rate={prod?.rating?.rate} /><p> ({prod?.rating?.count})</p>
-                <Link to={`/Products`}> Ritorna nei prodotti </Link>
+                <Link to={`/Products`}> Ritorna nei prodotti </Link> */}
             </div>
         </>
 
